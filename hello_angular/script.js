@@ -1,29 +1,23 @@
 // Code goes here
 
-/*
- * Although the following code work, it does not scale well. The problem
- * is that each of the names, `createWorker` and `worker` are
- * **global**. In our current situation, having these two variables in
- * the global namespace causes no problems. 
+/* 
+ * To avoid polluting the global scope, suppose I simply create an
+ * anonymous function and then immediately invoke it?
  *
- * Now imagine a situation in which this script is part of many
- * different scripts bundled together on a page. Unfortunately, naming a
- * variable, `worker` and naming a function, `createWorker` is
- * **common**. Many of our team members have similar names in our code. 
+ * Although it seems this should work, it actually generates a syntax
+ * error. (I do not understand why. This error differs from the issue
+ * describe in the Pluralsight video.)
  *
- * When we attempt to run this code together with our co-workers, we now
- * have a problem. When the JavaScript interpreter encounters the name,
- * `worker`, which value is it it bound to? If my teammates script
- * changed the value to which `worker` is bound **before** I evaluate
- * the expression `worker.job1()`, what will happen? We just do not
- * know. :()
+ * On refreshing the page, the console has the error:
+ *
+ *     Uncaught SyntaxError: Unexpected token (
+ *
+ * The console function indicates that this error occurs at line 7 of
+ * the script:
+ *
+ * 		`function() {`
  */
-
-/*
- * Adding an enclosing scope can reduce **many* global names to a single
- * name. 
- */
-var program = function() {
+function() {
 	var createWorker = function() {
 
 		/*
@@ -82,12 +76,5 @@ var program = function() {
 	worker.job2();
 	worker.job2();
 	worker.job2();
-}
+}();
 
-/*
- * We now invoke a **single** function to do all our work. Notice that
- * our script still has the same **behavior** as the previous versions;
- * however, it "pollutes" the global scope far, far less because it only
- * defines a single, global name.
- */
-program();

@@ -1,6 +1,25 @@
 // Code goes here
 
 /*
+ * Although the following code work, it does not scale well. The problem
+ * is that each of the names, `createWorker` and `worker` are
+ * **global**. In our current situation, having these two variables in
+ * the global namespace causes no problems. 
+ *
+ * Now imagine a situation in which this script is part of many
+ * different scripts bundled together on a page. Unfortunately, naming a
+ * variable, `worker` and naming a function, `createWorker` is
+ * **common**. Many of our team members have similar names in our code. 
+ *
+ * When we attempt to run this code together with our co-workers, we now
+ * have a problem. When the JavaScript interpreter encounters the name,
+ * `worker`, which value is it it bound to? If my teammates script
+ * changed the value to which `worker` is bound **before** I evaluate
+ * the expression `worker.job1()`, what will happen? We just do not
+ * know. :()
+ */
+
+/*
  * This script is an example of the "revealing module pattern."
  *
  * In this pattern, one **does not** write functions inline; instead,

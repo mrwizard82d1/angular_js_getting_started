@@ -15,20 +15,35 @@
 var createWorker = function() {
 
 	/*
+	 * Remember that any variables defined in this function are
+	 * only visible within this function; that is, they are private. But
+	 * they **are** visible to functions defined within this function.
+	 */
+	var workerCount = 0;
+
+	/*
 	 * `task1` is the name of an **internal** function. It is **not**
 	 * exposed to consumers of the returned value.
+	 *
+	 * `task1` increments the local (private) variable `workerCount` and
+	 * then logs its value.
 	 */
 	var task1 = function() {
-		console.log("task1");
+		workerCount++;
+		console.log("task1", workerCount);
 	}
 
 	/*
 	 * Similarly, `task2` is another internal function. Because of
 	 * JavaScript scoping rules, its name is only available in the scope
 	 * of `createWorker` (and any enclosed scopes).
+	 *
+	 * Similarly, `task2` increments the private variable `workerCount`.
+	 *
 	 */
 	var task2 = function() {
-		console.log("task2");
+		workerCount++;
+		console.log("task2", workerCount);
 	}
 
 	/*
@@ -47,6 +62,11 @@ var worker = createWorker();
 /*
  * We invoke `task1` and `task2`, from the global scope but we
  * "see" neither `task1 nor `task2`. But we do see their result. :)
+ *
+ * Invoking `job1` and `job2` increments the variable `workerCount`
+ * which is only local to the `createWorker` function.
  */
 worker.job1();
+worker.job2();
+worker.job2();
 worker.job2();

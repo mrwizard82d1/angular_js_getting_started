@@ -1,23 +1,19 @@
 // Code goes here
 
-/* 
- * To avoid polluting the global scope, suppose I simply create an
- * anonymous function and then immediately invoke it?
+/*
+ * One solution to not polluting the global scope is the "immediately
+ * invoked function expression" (IIFE - prononced "iffy").
  *
- * Although it seems this should work, it actually generates a syntax
- * error. (I do not understand why. This error differs from the issue
- * describe in the Pluralsight video.)
+ * In this construct, one create an expression (inside the outermost
+ * parthenses) that defines a anonymous function and then immediately
+ * executes that function.
  *
- * On refreshing the page, the console has the error:
- *
- *     Uncaught SyntaxError: Unexpected token (
- *
- * The console function indicates that this error occurs at line 7 of
- * the script:
- *
- * 		`function() {`
+ * Because the function is anonymous, it does not add any name to the
+ * global scope. Because it is invoked immediately, it performs its work
+ * (a "side effect") and then immediately goes out of scope (and the
+ * function is eligible for garbage collection).
  */
-function() {
+(function() {
 	var createWorker = function() {
 
 		/*
@@ -76,5 +72,5 @@ function() {
 	worker.job2();
 	worker.job2();
 	worker.job2();
-}();
+}());
 

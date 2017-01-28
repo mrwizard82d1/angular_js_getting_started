@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
+<head>
+  <script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
 
-  <body>
-    <h1>Hello Angular!</h1>
-  </body>
+<body ng-app="">
+  <h1>Hello Angular!</h1>
+  
+  <!--
+  This is an AngularJS "binding expression." 
+  
+  The double brackets contain a JavaScript expression. AngularJS 
+  evaluates this expression and puts its value in the DOM at the 
+  same location in the DOM.
+  -->
+  
+  843 / 42 = {{ 843 / 42 }}
 
-</html>
+</body>

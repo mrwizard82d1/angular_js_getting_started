@@ -6,7 +6,9 @@
 
 // Begin by defining a function to do "real" work.
 var work = function() {
-  console.log("working hard!")
+	console.log("Working hard. Oops!");
+	// Our "real work" now raises an exception.
+	console.log(foo);
 }
 
 /*
@@ -33,6 +35,8 @@ var doWork = function(f) {
 	try {
 		f();
 	} catch (ex) {
+		// However, the `try-catch` block prevents the exception raised
+		// by `work` from propogating up to the browser.
 		console.log(ex);
 	}
 

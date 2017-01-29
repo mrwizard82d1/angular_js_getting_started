@@ -11,13 +11,20 @@ var MainController = function($scope, $http) {
 		$scope.person = response.data;
 	}
 
+	var ifErrorResponse = function(reason) {
+		$scope.error = "Oops! Could not get person."
+	}
+
 	/**
 	 * The function, `$http.get` is asynchronous. It returns a promise. A promise is an object with a `then` method. We
 	 * supply a callback function invoked when the response is returned to our request. 
 	 *
 	 * In our situation, the callback function simply sets the `$scope.person` to `response.data`.
+	 *
+	 * If an error occurs, for example because I incorrectly typed the resource, I invoke the error callback,
+	 * `ifErrorResponse`. This function sets `$scope.error` to the error message.
 	 */
-	$http.get("https://api.github.com/users/odetocode").then(whenGetComplete);
+	$http.get("https://api.github.com/users/odetocod").then(whenGetComplete, ifErrorResponse);
 }
 
 /*

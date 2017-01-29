@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="first-controller">
+	<!--
+	 Scott Allen put the ng-app directive on the html tag. I'm uncertain why other than to ensure it encloses the entire
+	 page. 
+
+	 In particular, I wonder if it is required in order to have the directive affect the scripts that are loaded. I do
+	 not think so, but I just do not know. :(
+	-->
+
+	<head>
+		<script data-require="angularjs@1.5.8" data-semver="1.5.8"
+				src="https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js"></script> 
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js"></script>
+	</head>
+
+	<!--
+	 I place the `ng-controller` attribute on the `body` tag. This placement enables the controller, `MainController`,
+	 to control all child tags; that is, all elements within the body of the page.
+
+	This code results in an error because AngularJS cannot find a function named `MainController`. (I've not yet written
+	it. :) ) 
+
+	Once I write the function, AngularJS, when the page is rendered, will execute this function to "control" the scope
+	(model) of AngularJS binding exrpessions (an expression in double curly braces `{{}}`).
+	-->
+	<body ng-controller="MainController">
+		<h1>{{message}}</h1>
+		<div>
+			And the secret person is ... {{person.name}}
+		</div>
+		<div>
+			{{error}}
+		</div>
+		<div>
+			<!--
+	   		The `ng-src` attribute addresses the issue of the page rendering the `img` tag by preventing rendering the
+			image until AngularJS is completed loaded.
+			-->
+			<img ng-src="{{person.avatar_url}}" title="{{person.name}}"> 
+		</div>
+
+	</body>
+
+</html>

@@ -23,12 +23,4 @@ angular.module('first-controller', []).controller('MainController', MainControll
  * This controller now works by making simple text, `message`, and a JavaScript object, `person`, available to the
  * controller.
  *
- * It has an issue though. When the page is first rendered, the console reports an error:
- *
- * 	 GET file:///Users/larryjones/professional/projects/angular_js_getting_started/first_controller/%7B%7Bperson.imageSource%7D%7D net::ERR_FILE_NOT_FOUND
- * 
- * This error occurs because the browser renders the HTML page **before** AngularJS is completed loaded.
- *
- * I'll fix this issue in the next commit.
- *
  */

@@ -31,7 +31,11 @@
 			And the secret word is: {{person.salutation}} {{person.lastName}}
 		</div>
 		<div>
-			<img src="{{person.imageSource}}" title="{{person.salutation}} {{person.lastName}}"> 
+			<!--
+	   		The `ng-src` attribute addresses the issue of the page rendering the `img` tag by preventing rendering the
+			image until AngularJS is completed loaded.
+			-->
+			<img ng-src="{{person.imageSource}}" title="{{person.salutation}} {{person.lastName}}"> 
 		</div>
 
 	</body>

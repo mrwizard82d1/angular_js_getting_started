@@ -9,6 +9,21 @@
  * This action removes my definitions from the global namespace, but the application no longer works. :)
  */
 (function() {
+	/*
+	 * Begin by defining the Angular app.
+	 *
+	 * The name must be equal to the value of the `ng-app` attribute in the `html` tag on the page.
+	 *
+	 * In addition, notice the empty array second argument. Forget this argument and you are no longer **definining** a
+	 * module but getting a module. If I had defined my application in **another** script, I would simply reference the
+	 * application using the single argument form, but I have chosen, for simplicity (and similarity to the tutorial
+	 * code), to define it in the same file as my controller.
+	 */
+	var app = angular.module('gitHubViewer', []);
+
+	/*
+	 * The code defining the controller is exactly the same as previously.
+	 */
 	var MainController = function($scope, $http) {
 
 		$scope.message = "Hello, Angular World!";
@@ -24,8 +39,13 @@
 		$http.get("https://api.github.com/users/odetocode").then(whenGetComplete, ifErrorResponse);
 	}
 
-	MainController.inject = ['$scope', '$http'];
-	angular.module('first-controller', []).controller('MainController', MainController);
-
-
+	/*
+	 * Having defined my controller, the value referenced by the variable `MainController`, I now register that
+	 * controller with the application.
+	 */
+	app.controller('MainController', MainController);
 }());
+
+/*
+ * And we're now back to working code. :)
+ */

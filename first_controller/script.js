@@ -3,20 +3,28 @@
 /*
  * Time to display not just simple data, but data from an object.
  */
-var MainController = function($scope) {
-	// Define a new, private object, bound to `person`
-	var person = {
-		salutation: "Mr.",
-		lastName: "Wizard",
-		imageSource: "mrwizard_1.jpeg"
-	};
+var MainController = function($scope, $http) {
 
 	$scope.message = "Hello, Angular World!";
-	// Add the internal (private) `person` object to the scope of the controller
-	$scope.person = person;
+
+	var whenGetComplete = function(response) {
+		$scope.person = response.data;
+	}
+
+	/**
+	 * The function, `$http.get` is asynchronous. It returns a promise. A promise is an object with a `then` method. We
+	 * supply a callback function invoked when the response is returned to our request. 
+	 *
+	 * In our situation, the callback function simply sets the `$scope.person` to `response.data`.
+	 */
+	$http.get("https://api.github.com/users/odetocode").then(whenGetComplete);
 }
 
-MainController.inject = ['$scope'];
+/*
+ * Aha! I just figured out the purpose of the call to `inject`. AngularJS support dependency injection. Calling the
+ * `inject` method injects objects (dependencies) into the controller.
+ */
+MainController.inject = ['$scope', '$http'];
 angular.module('first-controller', []).controller('MainController', MainController);
 
 /*

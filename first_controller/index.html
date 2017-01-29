@@ -28,14 +28,14 @@
 	<body ng-controller="MainController">
 		<h1>{{message}}</h1>
 		<div>
-			And the secret word is: {{person.salutation}} {{person.lastName}}
+			And the secret person is ... {{person.name}}
 		</div>
 		<div>
 			<!--
 	   		The `ng-src` attribute addresses the issue of the page rendering the `img` tag by preventing rendering the
 			image until AngularJS is completed loaded.
 			-->
-			<img ng-src="{{person.imageSource}}" title="{{person.salutation}} {{person.lastName}}"> 
+			<img ng-src="{{person.avatar_url}}" title="{{person.name}}"> 
 		</div>
 
 	</body>

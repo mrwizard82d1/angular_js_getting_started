@@ -24,7 +24,7 @@ var MainController = function($scope, $http) {
 	 * If an error occurs, for example because I incorrectly typed the resource, I invoke the error callback,
 	 * `ifErrorResponse`. This function sets `$scope.error` to the error message.
 	 */
-	$http.get("https://api.github.com/users/odetocod").then(whenGetComplete, ifErrorResponse);
+	$http.get("https://api.github.com/users/odetocode").then(whenGetComplete, ifErrorResponse);
 }
 
 /*
